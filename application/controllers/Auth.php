@@ -16,6 +16,13 @@ class Auth extends CI_Controller
         $this->load->view("login");
     }
 
+    public function setFlasher($type, $message)
+	{
+		$flash = '<div class="alert alert-' . $type . '" role="alert">
+        ' . $message . ' </div>';
+		return $this->session->set_flashdata('message', $flash);
+	}
+
     public function login()
     {
         // Mengambil data dari form login
@@ -30,8 +37,10 @@ class Auth extends CI_Controller
                 'status' => false,
                 'message' => 'Invalid username or password'
             ];
-            $this->output->set_content_type('application/json')->set_output(json_encode($response));
-            return;
+            $this->setFlasher('danger', 'Invalid username or password');
+            redirect("login");
+            // $this->output->set_content_type('application/json')->set_output(json_encode($response));
+            // return;
         }
 
         // Memeriksa apakah password yang diberikan cocok dengan hash password di database
@@ -41,9 +50,10 @@ class Auth extends CI_Controller
                 'status' => false,
                 'message' => 'Invalid username or password'
             ];
-            $this->output->set_content_type('application/json')->set_output(json_encode($response));
+            $this->setFlasher('danger', 'Invalid username or password');
             redirect("login");
-            return;
+            // $this->output->set_content_type('application/json')->set_output(json_encode($response));
+            // return;
         }
 
         // Jika username dan password cocok, maka buat token JWT
@@ -68,5 +78,13 @@ class Auth extends CI_Controller
         $this->session->set_userdata($data);
         $this->output->set_content_type('application/json')->set_output(json_encode($response));
         redirect("home");
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('username');
+		$this->session->unset_userdata('token');
+        $this->setFlasher('info', 'You successfull Logout');
+        redirect("login");
     }
 }

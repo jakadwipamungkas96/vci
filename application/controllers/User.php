@@ -3,14 +3,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 require APPPATH . 'helpers/jwt_helper.php';
 
-class Home extends CI_Controller
+class User extends CI_Controller
 {
     public function __construct()
     {
         parent::__construct();
         $this->load->model([
             'user_model',
-            'penjualan_model'
         ]);
     }
 
@@ -58,8 +57,8 @@ class Home extends CI_Controller
         ];
 
         $data["data"] = $response;
-        $data["dt_penjualan"] = $this->penjualan_model->getData();
-        $this->load->view("home", $data);
+        $data["dt_user"] = $this->user_model->getData();
+        $this->load->view("user", $data);
         // $this->output->set_content_type('application/json')->set_output(json_encode($response));
     }
 }

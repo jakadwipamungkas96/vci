@@ -2,10 +2,10 @@
 <div class="main-content">
     <section class="section">
         <div class="section-header">
-            <h1>Penjualan</h1>
+            <h1>Data User</h1>
             <div class="section-header-breadcrumb">
                 <div class="breadcrumb-item active"><a href="#">Menu Utama</a></div>
-                <div class="breadcrumb-item">Data Pejualan</div>
+                <div class="breadcrumb-item">Data User</div>
             </div>
         </div>
 
@@ -21,23 +21,15 @@
                                 <table class="table table-striped table-hover">
                                     <tr>
                                         <th class="text-center">#</th>
-                                        <th class="text-left">Kode Barang</th>
-                                        <th class="text-left">Nama Barang</th>
-                                        <th class="text-left">Customer</th>
-                                        <th class="text-left">Qty</th>
-                                        <th class="text-left">Harga</th>
-                                        <th class="text-left">Netto</th>
+                                        <th class="text-left">UserID</th>
+                                        <th class="text-left">Email</th>
                                     </tr>
-                                    <?php if (!empty($dt_penjualan["data"])) { ?>
-                                        <?php foreach ($dt_penjualan["data"] as $k_penjualan => $val) { ?>
+                                    <?php if (!empty($dt_user["data"])) { ?>
+                                        <?php foreach ($dt_user["data"] as $k_user => $val) { ?>
                                         <tr>
-                                            <td class="p-0 text-center"><?php echo $k_penjualan+1 ?></td>
-                                            <td><?php echo $val['kodebarang'] ?></td>
-                                            <td><?php echo $val['namabarang'] ?></td>
-                                            <td><?php echo $val['customer'] ?></td>
-                                            <td><?php echo $val['qty'] ?></td>
-                                            <td><?php echo $val['harga'] ?></td>
-                                            <td><?php echo $val['netto'] ?></td>
+                                            <td class="p-0 text-center"><?php echo $k_user+1 ?></td>
+                                            <td><?php echo $val['username'] ?></td>
+                                            <td><?php echo $val['email'] ?></td>
                                         </tr>
                                         <?php } ?>
                                     <?php } else { ?>

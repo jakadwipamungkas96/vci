@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['login'] = 'auth';
 $route['home'] = 'home/index';
+$route['user'] = 'user/index';
